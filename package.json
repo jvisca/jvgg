@@ -1,0 +1,23 @@
+{
+  "name": "jvgg",
+  "version": "1.0.0",
+  "description": "desarrollo de nuestra api",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvisca/jvgg.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jvisca/jvgg/issues"
+  },
+  "homepage": "https://github.com/jvisca/jvgg#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
