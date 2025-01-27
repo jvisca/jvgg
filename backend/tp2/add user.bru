@@ -1,0 +1,23 @@
+meta {
+  name: add user
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "dni": 46630343,
+    "name": "valentina",
+    "email": "valen@gmail.com",
+    "genero": true,
+    "edad": 19,
+    "n_telefono": 155322
+  }
+  
+}
