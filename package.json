@@ -2,8 +2,9 @@
   "name": "jvgg",
   "version": "1.0.0",
   "description": "desarrollo de nuestra api",
-  "main": "src/app.js",
+  "main": "backend/src/app.js",
   "scripts": {
+    "dev": "nodemon /backend/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/jvisca/jvgg#readme",
   "dependencies": {
+    "@prisma/client": "^6.2.1",
     "express": "^4.21.2"
   },
   "devDependencies": {

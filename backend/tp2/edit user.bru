@@ -1,0 +1,26 @@
+meta {
+  name: edit user
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://localhost:3000/user/:dni
+  body: json
+  auth: none
+}
+
+params:path {
+  dni: 46630342
+}
+
+body:json {
+  {
+    "dni": 46630322,
+    "name": "valentina",
+    "email": "valen2020@gmail.com",
+    "genero": true,
+    "edad": 19,
+    "n_telefono": 155322
+  }
+}
