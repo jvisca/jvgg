@@ -1,0 +1,15 @@
+meta {
+  name: delete trainer
+  type: http
+  seq: 5
+}
+
+delete {
+  url: http://localhost:3000/api/v1/trainer/:dni
+  body: none
+  auth: none
+}
+
+params:path {
+  dni: 1234567
+}

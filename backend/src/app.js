@@ -1,10 +1,10 @@
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient } = require('@prisma/client')
+const { body, validationResult, param} = require('express-validator');
 
 const express = require('express')
 const app = express()
 const port = 3000
-
-const prisma = new PrismaClient();
+const prisma = new PrismaClient()
 
 app.use(express.json())
 
@@ -123,3 +123,146 @@ app.delete('/user/:dni', async (req, res) => {
     }
   }
 });
+
+//----------------------------------------------
+
+app.get("/api/v1/trainers", async (req, res) => {
+  try{
+    const trainers = await prisma.trainer.findMany()
+    if (trainers.length === 0){
+      res.sendStatus(204)
+      return
+    }
+
+    res.json(trainers)
+  } 
+  catch (error) {
+    res.status(500).send({ error: "Internal server error"})
+    }
+})
+
+app.get("/api/v1/trainer/:dni", param('dni').isLength({min:7}), async (req,res) => {
+  try{
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.sendStatus(400)
+    }
+
+    const trainer = await prisma.trainer.findUnique({
+      where:{
+        dni: parseInt(req.params.dni)
+      }
+    })
+    
+    if (trainer === null){
+      return res.sendStatus(404)
+    }
+    res.json(trainer)
+  }
+  
+  catch (error){
+    res.status(500).send({ error: "Internal server error"})
+  }
+})
+
+
+app.post("/api/v1/trainer", [body('dni').isLength({min:7}).isNumeric().notEmpty(), body('name').notEmpty(), body('activity').notEmpty(),body('timeSlot').notEmpty(), body('age').notEmpty(), body('gender').notEmpty()], async (req, res) => {
+  try{
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.sendStatus(400)
+    }
+    
+    const trainer_dni = await prisma.trainer.findUnique({
+      where: {
+        dni: req.body.dni
+      }
+    })
+
+    if (trainer_dni) {
+      return res.sendStatus(409)
+    }
+
+    const trainer = await prisma.trainer.create({
+      data: {
+        dni: req.body.dni,
+        name: req.body.name,
+        activity: req.body.activity,
+        timeSlot: req.body.timeSlot,
+        age: req.body.age,
+        gender: req.body.gender
+      }
+    })
+    res.status(201).send(trainer)
+  }
+  catch (error) {
+    res.sendStatus(500)
+  }
+})
+
+app.delete("/api/v1/trainer/:dni",[param('dni').notEmpty()], async (req, res) => {
+  try {
+
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.sendStatus(400)
+    }
+    const trainer = await prisma.trainer.findUnique({
+      where: {
+        dni: parseInt(req.params.dni)
+      }
+    })
+
+    if (trainer === null){
+      res.sendStatus(404)
+      return
+    }
+
+    await prisma.trainer.delete({
+      where:{
+        dni: parseInt(req.params.dni)
+      }
+    })
+
+    res.send(trainer)
+  }
+  catch (error) {
+    res.status(500).send({ error: "Internal Server Error" })
+  }
+})
+
+app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notEmpty(), body('name').notEmpty(), body('activity').notEmpty(), body('timeSlot').notEmpty(), body('age').notEmpty(), body('gender').notEmpty()], async (req,res) => {
+  try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.sendStatus(400)
+    }
+
+    let trainer = await prisma.trainer.findUnique({
+      where: {
+        dni: parseInt(req.params.dni)
+      }
+    })
+    if (trainer === null){
+      res.sendStatus(404)
+      return
+    }
+
+    trainer = await prisma.trainer.update({
+      where: {
+        dni: trainer.dni
+      },
+      data: {
+        name: req.body.name,
+        activity: req.body.activity,
+        timeSlot: req.body.timeSlot,
+        age: req.body.age,
+        gender: req.body.gender
+      }
+    })
+    res.send(trainer)
+  }
+  catch (error) {
+    res.status(500).send({ error: "Internal Server Error" })
+  }
+})
