@@ -1,0 +1,25 @@
+meta {
+  name: modify trainer
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://localhost:3000/api/v1/trainer/:dni
+  body: json
+  auth: none
+}
+
+params:path {
+  dni: 1234567
+}
+
+body:json {
+  {
+    "name": "Nacho",
+    "activity": "Musculacion",
+    "timeSlot": "Noche",
+    "age": 19,
+    "gender": "tractor"
+  }
+}
