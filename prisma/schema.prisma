@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,37 +8,32 @@ datasource db {
 }
 
 model Users {
-  dni          Int        @id
-  name         String
-  email        String
-  gender       String
-  age          Int
-  cellphone    Int
-
-  turns        Turn[]    
+  dni       Int    @id
+  name      String
+  email     String
+  gender    String
+  age       Int
+  cellphone Int
+  turns     Turn[]
 }
 
 model Turn {
-  id           Int        @id @default(autoincrement())
-  dni          Int
+  id           Int     @id @default(autoincrement())
+  userDni      Int
   activity     String
-  trainerId    Int
+  trainerDni   Int
   timeSlot     String
   timesPerWeek Int
-
-  // Relaciones
-  user         Users       @relation(fields: [dni], references: [dni])
-  trainer      Trainer    @relation(fields: [trainerId], references: [dni])
+  user         Users   @relation(fields: [userDni], references: [dni]) 
+  trainer      Trainer @relation(fields: [trainerDni], references: [dni])
 }
 
 model Trainer {
-  dni          Int        @id
-  name         String
-  activity     String
-  timeSlot     String
-  age          Int
-  gender       String
-
-  turns        Turn[]     
+  dni      Int    @id
+  name     String
+  activity String
+  timeSlot String
+  age      Int
+  gender   String
+  turns    Turn[]
 }
-
