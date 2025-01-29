@@ -266,3 +266,66 @@ app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notE
     res.status(500).send({ error: "Internal Server Error" })
   }
 })
+
+//-----------------------------------------------------------------------------------
+
+app.post("/api/v1/turns", [body('userDni').isLength({min:7}).isNumeric().notEmpty(), body('activity').notEmpty(),body('trainerDni').notEmpty(), body('timeSlot').notEmpty(), body('timesPerWeek').notEmpty().isNumeric()], async (req, res) => {
+  try{
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.sendStatus(400)
+    }
+
+    const turn = await prisma.turn.create({
+      data: {
+        userDni: req.body.userDni,
+        activity: req.body.activity,
+        trainerDni: req.body.trainerDni,
+        timeSlot: req.body.timeSlot,
+        timesPerWeek: req.body.timesPerWeek 
+      }
+    })
+    res.status(201).send(turn)
+  }
+  catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "Internal Server Error", details: error.message })
+  }  
+})
+
+app.put("/api/v1/turns/:id", [body('userDni').isLength({min:7}).isNumeric().notEmpty(), body('activity').notEmpty(), body('trainerDni').isLength({min:7}).isNumeric().notEmpty(), body('timeSlot').notEmpty(), body('timesPerWeek').notEmpty().isNumeric()], async (req,res) => {
+  try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.sendStatus(400)
+    }
+
+    let turn = await prisma.turn.findUnique({
+      where: {
+        id: parseInt(req.params.id)
+      }
+    })
+    
+    if (turn === null){
+      return res.sendStatus(404)
+    }
+    
+    turn = await prisma.turn.update({
+      where: {
+        id: turn.id
+      },
+      data: {
+        userDni: req.body.userDni,
+        activity: req.body.activity,
+        trainerDni: req.body.trainerDni,
+        timeSlot: req.body.timeSlot,
+        timesPerWeek: req.body.timesPerWeek
+      }
+    })
+    res.send(turn)
+  }
+  catch (error) {
+    console.error(error)
+    res.status(500).send({ error: "Internal Server Error", details: error.message })
+  }
+})

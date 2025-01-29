@@ -1,0 +1,21 @@
+meta {
+  name: add turn
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://localhost:3000/api/v1/turns
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userDni": 1234567,
+    "activity": "natacion",
+    "trainerDni": 1234568,
+    "timeSlot": "Mañana",
+    "timesPerWeek": 3
+  }
+}

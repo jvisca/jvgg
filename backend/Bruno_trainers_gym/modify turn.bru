@@ -1,0 +1,25 @@
+meta {
+  name: modify turn
+  type: http
+  seq: 10
+}
+
+put {
+  url: http://localhost:3000/api/v1/turns/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: 2
+}
+
+body:json {
+  {
+    "userDni": 1234567,
+    "activity": "PESAS",
+    "trainerDni": 1234568,
+    "timeSlot": "NOCHE",
+    "timesPerWeek": 5
+  }
+}
