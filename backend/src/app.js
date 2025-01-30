@@ -268,7 +268,7 @@ app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notE
 
 //-----------------------------------------------------------------------------------
 
-app.post("/api/v1/turns", [body('userDni').isLength({min:7}).isNumeric().notEmpty(), body('activity').notEmpty(),body('trainerDni').notEmpty(), body('timeSlot').notEmpty(), body('timesPerWeek').notEmpty().isNumeric()], async (req, res) => {
+app.post("/api/v1/turn", [body('userDni').isLength({min:7}).isNumeric().notEmpty(), body('activity').notEmpty(),body('trainerDni').notEmpty(), body('timeSlot').notEmpty(), body('timesPerWeek').notEmpty().isNumeric()], async (req, res) => {
   try{
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
