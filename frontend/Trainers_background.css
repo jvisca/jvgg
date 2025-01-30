@@ -1,0 +1,8 @@
+body {
+    background-image: url('./IMG/Trainers_fondo.jpg'); /* Cambia 'ruta/a/tu/imagen.jpg' por la ruta real de tu imagen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    min-height: 100vh;
+    margin: 0;
+}
