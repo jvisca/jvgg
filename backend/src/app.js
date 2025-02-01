@@ -3,21 +3,20 @@ const { body, validationResult, param} = require('express-validator');
 
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const port = 3000
 const prisma = new PrismaClient()
 
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/api/v1/')
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
 
 app.post('/register', async (req, res) => {
   const { dni, name, email, gender, age, cellphone } = req.body;
@@ -344,7 +343,7 @@ app.get('/users/:dni/turns', async (req, res) => {
   const { dni } = req.params; // Obtén el DNI del usuario desde los parámetros
   try {
     const turns = await prisma.turn.findMany({
-      where: { dni: parseInt(dni) }, // Filtra los turnos por el DNI del usuario
+      where: { userDni: parseInt(dni) }, // Filtra los turnos por el DNI del usuario
     });
 
     if (turns.length === 0) {
@@ -357,7 +356,6 @@ app.get('/users/:dni/turns', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener los turnos del usuario' });
   }
 });
-
 
 //eliminar un turnno en base a su ID
 app.delete('/turns/:id', async (req, res) => {

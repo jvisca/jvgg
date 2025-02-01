@@ -1,5 +1,5 @@
 body {
-    background-image: url('./IMG/turn_fondo.jpg'); /* Cambia 'ruta/a/tu/imagen.jpg' por la ruta real de tu imagen */
+    background-image: url('../IMG/turn_fondo.jpg'); /* Cambia 'ruta/a/tu/imagen.jpg' por la ruta real de tu imagen */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;

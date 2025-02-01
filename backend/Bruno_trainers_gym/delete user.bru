@@ -1,0 +1,15 @@
+meta {
+  name: delete user
+  type: http
+  seq: 15
+}
+
+delete {
+  url: http://localhost:3000/user/:dni
+  body: none
+  auth: none
+}
+
+params:path {
+  dni: 1234567
+}

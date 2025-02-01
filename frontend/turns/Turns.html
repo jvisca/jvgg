@@ -12,7 +12,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link 
         rel="stylesheet"  
-        href="./Forms.css">
+        href="../Forms.css">
         <link 
         rel="stylesheet"  
         href="./Turns_background.css">
@@ -28,7 +28,7 @@
                         <div class="field">
                             <label class="label highlight">DNI</label>
                             <div class="control has-icons-left">
-                                <input class="input custom-width" type="text" placeholder="Your DNI"/>
+                                <input id="tu_dni" class="input custom-width" type="text" placeholder="Your DNI"/>
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-address-card"></i>
                                 </span>
@@ -38,7 +38,7 @@
                             <label class="label highlight">Activity</label>
                             <div class="control has-icons-left">
                                 <div class="select">
-                                    <select>
+                                    <select id="tu_activity">
                                         <option value="" disabled selected hidden>Choose your activity</option>
                                         <option value="Bodybuilding">Bodybuilding</option>
                                         <option value="HIT">HIT</option>
@@ -60,7 +60,7 @@
                             <label class="label highlight">Time slot</label>
                             <div class="control has-icons-left">
                                 <div class="select">
-                                    <select>
+                                    <select id="tu_slot">
                                         <option value="" disabled selected hidden>Choose your slot</option>
                                         <option value="Morning">Morning</option>
                                         <option value="Afternoon">Afternoon</option>
@@ -76,7 +76,7 @@
                             <label class="label highlight">Times per week</label>
                             <div class="control has-icons-left">
                                 <div class="select">
-                                    <select>
+                                    <select id="tu_times">
                                         <option value="" disabled selected hidden>How many times per week</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -95,18 +95,26 @@
                             <label class="label highlight">Trainer</label>
                             <div class="field has-addons">
                                 <div class="control has-icons-left is-expanded">
-                                    <input class="input custom-width" type="text" placeholder="Your trainer"/>
+                                    <input id="tu_trainer" class="input custom-width" type="text" placeholder="Your trainer"/>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-stopwatch-20"></i>
                                     </span>
                                 </div>
                             </div>
                         </div>
-                        <button class="button is-white is-fullwidth button-custome">Submit</button>
+                        <div class="field is-grouped is-grouped-centered">
+                            <p class="control">
+                                <button type="submit" class="button is-white button-custome" onclick="submitForm()">Submit</button>
+                            </p>
+                            <p class="control">
+                                <a class="button is-white button-custome" onclick="clearForm()">Clear</a>
+                            </p>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+    <script src="./Tu_script.js"></script>
 </body>
 </html>
