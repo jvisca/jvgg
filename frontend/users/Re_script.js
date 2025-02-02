@@ -56,3 +56,4 @@ function clearForm(){
     document.getElementById('re_cellphone').value = '';
     document.getElementById('re_gender').value = '';
 }
+
