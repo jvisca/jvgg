@@ -19,7 +19,7 @@
 </head>
 
 <body>
-    <section class="section is-medium pt-5">
+    <section id="background1" class="section is-medium pt-5">
         <div class="container is-fluid">
             <div class="columns is-centered">
                 <div class="column is-one-third">
@@ -59,10 +59,10 @@
                                         <option value="Spinning">Spinning</option>
                                         <option value="Swimming">Swimming</option>
                                     </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-running"></i>
+                                    </span>
                                 </div>
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-running"></i>
-                                </span>
                             </div>
                         </div>
                         <div class="field">
@@ -75,10 +75,10 @@
                                         <option value="Afternoon">Afternoon</option>
                                         <option value="Night">Night</option>
                                     </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
                                 </div>
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-clock"></i>
-                                </span>
                             </div>
                         </div>
                         <div class="field">
@@ -100,15 +100,15 @@
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                     </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-transgender-alt" id="gender-icon"></i>
+                                    </span>
                                 </div>
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-transgender-alt"></i>
-                                </span>
                             </div>
                         </div>
                         <div class="field is-grouped is-grouped-centered">
                             <p class="control">
-                                <button class="button is-white button-custome" onclick="submitForm()">Submit</button>
+                                <button class="button is-white button-custome" onclick="submitForm(event)">Submit</button>
                             </p>
                             <p class="control">
                                 <a class="button is-white button-custome" onclick="clearForm()">Clear</a>
@@ -119,6 +119,8 @@
             </div>  
         </div>
     </section>
-    <script src="./Tr_script.js"></script>
+
+    <script src="./Tr_script.js">
+    </script>
 </body>
 </html>

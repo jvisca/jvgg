@@ -14,13 +14,12 @@
   color: #ffd700;
 }
 
-.button-custome {
-  background-color: #ffffff !important;
-  color: #000 !important; 
-  transition: background-color 0.3s ease, color 0.3s ease !important;
-}
-
 .button-custome:hover {
   background-color: #ffd700 !important;
   color: #000000 !important;
+  transition: background-color 0.3s ease, color 0.3s ease !important;
+}
+
+.select select:focus + .icon i {
+  color: gold;
 }
