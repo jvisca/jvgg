@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SESSIONS</title>
+        <title>USERS</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
         <link rel="stylesheet" href="./main.css">  
@@ -12,7 +12,7 @@
         <div class="container is-widescreen">
             <nav class="navbar" role="navigation" aria-label="main navigation">
                 <div class="navbar-brand">
-                    <a class="navbar-item" href="pag.html">
+                    <a class="navbar-item" href="../pag.html">
                         CR7
                     </a>
                     <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -27,10 +27,10 @@
                         <div class="navbar-item has-dropdown is-hoverable">
                             <a class="navbar-link">users</a>
                             <div class="navbar-dropdown">
-                                <a class="navbar-item" href="../users/users.html">
+                                <a class="navbar-item" href="users.html">
                                     view users
                                 </a>
-                                <a class="navbar-item is-selected" href="../users/Register.html">
+                                <a class="navbar-item is-selected" href="Register.html">
                                     register
                                 </a>
                                 <a class="navbar-item">
@@ -50,7 +50,7 @@
                                 <a class="navbar-item" href="../trainers/trainers.html">
                                     view trainers
                                 </a>
-                                <a class="navbar-item is-selected" href="../trainers/Trainers.html">
+                                <a class="navbar-item is-selected">
                                     register
                                 </a>
                                 <a class="navbar-item">
@@ -67,10 +67,10 @@
                                 sessions
                             </a>
                             <div class="navbar-dropdown">
-                                <a class="navbar-item" href="turnos.html">
+                                <a class="navbar-item" href="../turns/turnos.html">
                                     view sessions
                                 </a>
-                                <a class="navbar-item is-selected" href="Turns.html">
+                                <a class="navbar-item is-selected">
                                     take sessions
                                 </a>
                                 <a class="navbar-item">
@@ -97,6 +97,24 @@
                     </div>
                 </div>
             </nav>
+            <h1>USUARIOS</h1>
+            <table class="table" id="table">
+                <thead>
+                  <tr>
+                    <th><abbr title="Position">DNI</abbr></th>
+                    <th>NOMBRE</th>
+                    <th><abbr title="Played">EMAIL</abbr></th>
+                    <th><abbr title="Won">GEN</abbr></th>
+                    <th><abbr title="Drawn">AGE</abbr></th>
+                    <th><abbr title="Lost">CELLPHONE</abbr></th>
+                    <th>BORRAR</th>
+                    <th>EDITAR</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+              </table>
         </div>
     </body>
+    <script src="./get.user.js"></script>
 </html>

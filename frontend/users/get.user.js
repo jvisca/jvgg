@@ -35,7 +35,15 @@ showusers = function(){
         button.className="button is-danger is-dark";
         button.onclick=function() { deleteUser(user.dni);};
 
-
+        //boton de actualizar xd
+        let actualizar = document.createElement('td');
+        let updateButton = document.createElement('button');
+        updateButton.textContent = 'Update';
+        updateButton.className = "button is-warning is-dark";
+        updateButton.onclick = function() { 
+            window.location.href = `actualizar.html?id=${turn.id}`; 
+        };
+        //
         borrar.appendChild(button);
 
         tr.appendChild(dni);
@@ -45,7 +53,9 @@ showusers = function(){
         tr.appendChild(age);
         tr.appendChild(cellphone);
         tr.appendChild(borrar);
+        tr.appendChild(actualizar);
         table.appendChild(tr);
+        actualizar.appendChild(updateButton);
         }); 
     }); 
 }
