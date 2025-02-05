@@ -246,6 +246,20 @@ app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notE
       return
     }
 
+    const turno = await prisma.turn.findMany({
+      where: {
+        trainerDni: parseInt(req.params.dni)
+      }
+    })
+
+    if (turno.length > 0){
+      await prisma.turn.deleteMany({
+        where: {
+          trainerDni: parseInt(req.params.dni)
+        }
+      })
+    }
+
     trainer = await prisma.trainer.update({
       where: {
         dni: trainer.dni
