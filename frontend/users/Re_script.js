@@ -26,6 +26,12 @@ function submitForm(event){
         return;
     }
 
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('El correo electrónico no es válido.');
+        return;
+    }
+
     let body = {
         dni: parseInt(dni),
         name: name,
@@ -95,6 +101,12 @@ function putUser(event){
 
     if (!name || !email || !age || !cellphone || !gender) {
         alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('El correo electrónico no es válido.');
         return;
     }
 
