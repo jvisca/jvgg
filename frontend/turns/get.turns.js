@@ -38,7 +38,16 @@ showTurns = function(){
             button.className = "button is-danger is-dark";
             button.onclick = function() { deleteTurn(turn.id); }; // Cambio de "deleteUser" a "deleteTurn"
 
+            let actualizar = document.createElement('td');
+            let updateButton = document.createElement('button');
+            updateButton.textContent = 'Update';
+            updateButton.className = "button is-warning is-dark";
+            updateButton.onclick = function() { 
+                window.location.href = `actualizar.html?id=${trainer.dni}`; 
+            };
+
             borrar.appendChild(button);
+            actualizar.appendChild(updateButton);
 
             tr.appendChild(ID);
             tr.appendChild(DNI);
@@ -47,6 +56,7 @@ showTurns = function(){
             tr.appendChild(timeslot);
             tr.appendChild(timesperweek);
             tr.appendChild(borrar);
+            tr.appendChild(actualizar);
 
             table.appendChild(tr);
         }); 

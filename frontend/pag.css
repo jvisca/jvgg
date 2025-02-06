@@ -1,0 +1,65 @@
+html {
+    background-image: url('IMG/SILLA.avif'); /* Ruta de tu imagen */
+    background-size: 40%; /* Ajusta el tamaño de la imagen para que no esté tan acentuado */
+    background-position: center center; /* Centra la imagen */
+    background-attachment: fixed; /* Fija la imagen mientras se hace scroll */
+    height: 80%; /* Asegura que el fondo cubra toda la altura de la página */
+    margin: 0; /* Elimina márgenes predeterminados del body */
+}
+
+.navbar {
+    background-color: rgba(255, 255, 255, 0.7); /* Blanco con 70% de opacidad */
+}
+
+.navbar-brand .navbar-item {
+    color: black !important; /* Color negro para el texto de la marca */
+}
+
+.navbar-item:hover, .navbar-link:hover {
+    background-color: gold !important; /* Fondo dorado cuando el mouse pasa sobre el botón */
+    color: black !important; /* Texto negro cuando el mouse pasa sobre el botón */
+}
+
+.navbar-item.is-active, .navbar-link.is-active {
+    background-color: gold !important; /* Fondo dorado cuando el botón está activo */
+    color: black !important; /* Texto negro cuando el botón está activo */
+}
+
+.navbar-dropdown {
+    background-color: rgba(255, 255, 255, 0.8) !important; /* Fondo blanco semi-transparente */
+    color: black !important; /* Color de texto negro */
+}
+
+.navbar-dropdown .navbar-item {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco trasparente */
+    color: black; /* Texto negro */
+    font-weight: normal; /* Fuente normal por defecto */
+}
+
+.navbar-dropdown .navbar-item:hover {
+    background-color: gold !important; /* Fondo dorado cuando pasa el mouse */
+    color: black !important; /* Texto negro cuando pasa el mouse */
+    font-weight: bold; /* Hacer el texto en negrita cuando pasa el mouse */
+}
+
+.navbar-item.has-dropdown .navbar-dropdown {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco trasparente */
+    color: black; /* Color de texto negro */
+}
+
+.navbar-item .navbar-link {
+    color: black !important;
+}
+
+.navbar-item.has-dropdown .navbar-dropdown .navbar-item {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco trasparente */
+    color: black; /* Texto negro */
+    font-weight: normal; /* Fuente normal por defecto */
+}
+
+.navbar-item.has-dropdown .navbar-dropdown .navbar-item:hover {
+    background-color: gold !important; /* Fondo dorado cuando pasa el mouse */
+    color: black !important; /* Texto negro cuando pasa el mouse */
+    font-weight: bold; /* Hacer el texto en negrita cuando pasa el mouse */
+}
+
