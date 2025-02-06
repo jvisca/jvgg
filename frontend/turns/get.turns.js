@@ -63,11 +63,29 @@ showTurns = function(){
 }
 
 deleteTurn = function(id){
+
+    if (!confirm(`Are you sure you want to delete the turn with ID: ${id}?`)) {
+        return;
+    }
+
     alert('Turn deleted: ' + id);
-    fetch(`http://localhost:3000/turns/${id}`, { method: 'DELETE' })
-    .then(response => response.json())
+
+    fetch(`http://localhost:3000/turns/` + id, { method: 'DELETE' })
     .then(response => {
-        console.log(response);
-        showTurns();
+        if (response.status === 200 || response.status === 204) {
+            alert(`Turn with ID: ${id} deleted successfully.`);
+            console.log(response);
+            showTrainers();
+        } else if (response.status === 404) {
+            alert(`Turn with ID: ${id} not found.`);
+        } else if (response.status === 500) {
+            alert('There was an error on the server. Please try again later.');
+        } else {
+            alert('An unexpected error occurred.');
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting turn:', error);
+        alert('Error deleting the turn: ' + error.message);
     });
 }

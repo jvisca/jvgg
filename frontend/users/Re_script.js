@@ -9,12 +9,22 @@ fetch('http://localhost:3000/users')
 function submitForm(event){
     event.preventDefault();
 
-    let dni = document.getElementById('re_dni').value;
-    let name = document.getElementById('re_name').value;
-    let email = document.getElementById('re_email').value;
-    let age = document.getElementById('re_age').value;
-    let cellphone = document.getElementById('re_cellphone').value;
-    let gender = document.getElementById('re_gender').value;
+    let dni = document.getElementById('re_dni').value.trim();
+    let name = document.getElementById('re_name').value.trim();
+    let email = document.getElementById('re_email').value.trim();
+    let age = document.getElementById('re_age').value.trim();
+    let cellphone = document.getElementById('re_cellphone').value.trim();
+    let gender = document.getElementById('re_gender').value.trim();
+
+    if (!dni || !name || !email || !age || !cellphone || !gender) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    if (isNaN(dni) || isNaN(age) || isNaN(cellphone)){
+        alert('El DNI, la edad y el numero de celular deben ser números.');
+        return;
+    }
 
     let body = {
         dni: parseInt(dni),
@@ -38,7 +48,19 @@ function submitForm(event){
             clearForm();
             console.log(body);
 
-        } else {
+        } 
+        else if (response.status === 400) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Datos inválidos.');
+            });
+        } 
+        else if (response.status === 409) {
+            throw new Error('Ya existe un user con este DNI.');
+        } 
+        else if (response.status === 500) {
+            throw new Error('Error del servidor, intenta más tarde.');
+        }
+        else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error creating the user');
             });
@@ -65,11 +87,16 @@ function putUser(event){
     const urlParams = new URLSearchParams(window.location.search);
     const dni = parseInt(urlParams.get('dni'));
 
-    let name = document.getElementById('re_name').value;
-    let email = document.getElementById('re_email').value;
-    let age = document.getElementById('re_age').value;
-    let cellphone = document.getElementById('re_cellphone').value;
-    let gender = document.getElementById('re_gender').value;
+    let name = document.getElementById('re_name').value.trim();
+    let email = document.getElementById('re_email').value.trim();
+    let age = document.getElementById('re_age').value.trim();
+    let cellphone = document.getElementById('re_cellphone').value.trim();
+    let gender = document.getElementById('re_gender').value.trim();
+
+    if (!name || !email || !age || !cellphone || !gender) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
 
     let body = {
         name: name,
@@ -91,7 +118,16 @@ function putUser(event){
             alert('User updated successfully');
             clearFormPut();
             console.log(body);
-        } else {
+        } 
+        else if (response.status === 400) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Datos inválidos.');
+            });
+        } 
+        else if (response.status === 500) {
+            throw new Error('Error del servidor, intenta más tarde.');
+        }
+        else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error updating the User');
             });

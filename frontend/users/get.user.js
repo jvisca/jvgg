@@ -56,11 +56,28 @@ showusers = function() {
 }
 
 deleteUser = function(dni) {
-    alert('user deleted ' + dni);
+
+    if (!confirm(`Are you sure you want to delete the user with DNI: ${dni}?`)) {
+        return;
+    }
+    alert('user deleted'+dni);
+
     fetch('http://localhost:3000/user/' + dni, { method: 'DELETE' })
-    .then(response => response.json())
     .then(response => {
-        console.log(response);
-        showusers();
+        if (response.status === 200 || response.status === 204) {
+            alert(`User with DNI: ${dni} deleted successfully.`);
+            console.log(response);
+            showTrainers();
+        } else if (response.status === 404) {
+            alert(`User with DNI ${dni} not found.`);
+        } else if (response.status === 500) {
+            alert('There was an error on the server. Please try again later.');
+        } else {
+            alert('An unexpected error occurred.');
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting user:', error);
+        alert('Error deleting the user: ' + error.message);
     });
 }
