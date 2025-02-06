@@ -51,6 +51,10 @@ html {
     color: black !important;
 }
 
+.navbar-item {
+    padding-left: 2rem !important; /* Asegura espacio a la izquierda del elemento CR7 */
+}
+
 .navbar-item.has-dropdown .navbar-dropdown .navbar-item {
     background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco trasparente */
     color: black; /* Texto negro */
