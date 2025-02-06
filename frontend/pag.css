@@ -1,50 +1,50 @@
 html {
-    background-image: url('IMG/SILLA.avif'); /* Ruta de tu imagen */
-    background-size: 40%; /* Ajusta el tamaño de la imagen para que no esté tan acentuado */
-    background-position: center center; /* Centra la imagen */
-    background-attachment: fixed; /* Fija la imagen mientras se hace scroll */
-    height: 80%; /* Asegura que el fondo cubra toda la altura de la página */
-    margin: 0; /* Elimina márgenes predeterminados del body */
+    background-image: url('IMG/SILLA.avif');
+    background-size: 40%;
+    background-position: center center;
+    background-attachment: fixed; 
+    height: 80%; 
+    margin: 0; 
 }
 
 .navbar {
-    background-color: rgba(255, 255, 255, 0.7); /* Blanco con 70% de opacidad */
+    background-color: rgba(255, 255, 255, 0.7); 
 }
 
 .navbar-brand .navbar-item {
-    color: black !important; /* Color negro para el texto de la marca */
+    color: black !important; 
 }
 
 .navbar-item:hover, .navbar-link:hover {
-    background-color: gold !important; /* Fondo dorado cuando el mouse pasa sobre el botón */
-    color: black !important; /* Texto negro cuando el mouse pasa sobre el botón */
+    background-color: gold !important;
+    color: black !important; 
 }
 
 .navbar-item.is-active, .navbar-link.is-active {
-    background-color: gold !important; /* Fondo dorado cuando el botón está activo */
-    color: black !important; /* Texto negro cuando el botón está activo */
+    background-color: gold !important; 
+    color: black !important; 
 }
 
 .navbar-dropdown {
-    background-color: rgba(255, 255, 255, 0.8) !important; /* Fondo blanco semi-transparente */
-    color: black !important; /* Color de texto negro */
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    color: black !important; 
 }
 
 .navbar-dropdown .navbar-item {
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco trasparente */
-    color: black; /* Texto negro */
-    font-weight: normal; /* Fuente normal por defecto */
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: black; 
+    font-weight: normal; 
 }
 
 .navbar-dropdown .navbar-item:hover {
-    background-color: gold !important; /* Fondo dorado cuando pasa el mouse */
-    color: black !important; /* Texto negro cuando pasa el mouse */
-    font-weight: bold; /* Hacer el texto en negrita cuando pasa el mouse */
+    background-color: gold !important;
+    color: black !important; 
+    font-weight: bold;
 }
 
 .navbar-item.has-dropdown .navbar-dropdown {
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco trasparente */
-    color: black; /* Color de texto negro */
+    background-color: rgba(255, 255, 255, 0.8); 
+    color: black; 
 }
 
 .navbar-item .navbar-link {
@@ -52,18 +52,18 @@ html {
 }
 
 .navbar-item {
-    padding-left: 2rem !important; /* Asegura espacio a la izquierda del elemento CR7 */
+    padding-left: 2rem !important;
 }
 
 .navbar-item.has-dropdown .navbar-dropdown .navbar-item {
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco trasparente */
-    color: black; /* Texto negro */
-    font-weight: normal; /* Fuente normal por defecto */
+    background-color: rgba(255, 255, 255, 0.9); 
+    color: black; 
+    font-weight: normal;
 }
 
 .navbar-item.has-dropdown .navbar-dropdown .navbar-item:hover {
-    background-color: gold !important; /* Fondo dorado cuando pasa el mouse */
-    color: black !important; /* Texto negro cuando pasa el mouse */
-    font-weight: bold; /* Hacer el texto en negrita cuando pasa el mouse */
+    background-color: gold !important; 
+    color: black !important; 
+    font-weight: bold;
 }
 

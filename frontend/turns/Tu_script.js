@@ -157,18 +157,16 @@ document.getElementById('tu_slot').addEventListener('change', updateTrainer);
 function updateTrainer() {
     let activity = document.getElementById('tu_activity').value;
     let timeSlot = document.getElementById('tu_slot').value;
-    let trainerInput = document.getElementById('tu_trainer');  // Input donde autocompletamos el entrenador
-    // Asegurarse de que ambos campos estén seleccionados antes de proceder
+    let trainerInput = document.getElementById('tu_trainer');
     if (activity && timeSlot) {
-        fetch('http://localhost:3000/api/v1/trainers')  // Suponiendo que esta ruta devuelve todos los entrenadores
+        fetch('http://localhost:3000/api/v1/trainers')
             .then(response => response.json())
             .then(data => {
-                // Filtramos los entrenadores por actividad y franja horaria
                 let matchedTrainer = data.find(trainer => trainer.activity === activity && trainer.timeSlot === timeSlot);
                 if (matchedTrainer) {
-                    trainerInput.value = matchedTrainer.dni || 'No disponible';  // Auto-completar el campo "trainer"
+                    trainerInput.value = matchedTrainer.dni || 'No disponible';
                 } else {
-                    trainerInput.value = 'No hay entrenadores disponible';  // Si no hay coincidencias
+                    trainerInput.value = 'No hay entrenadores disponible';
                 }
             })
             .catch(error => {
@@ -176,7 +174,7 @@ function updateTrainer() {
                 trainerInput.value = 'Error';
             });
     } else {
-        trainerInput.value = '';  // Si no se ha seleccionado la actividad y la franja horaria
+        trainerInput.value = '';
     }
 }
 

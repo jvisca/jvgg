@@ -365,12 +365,11 @@ app.get('/turns', async (req, res) => {
   }
 });
 
-// encontrar turno en especifico en base al DNI
 app.get('/users/:dni/turns', async (req, res) => {
-  const { dni } = req.params; // Obtén el DNI del usuario desde los parámetros
+  const { dni } = req.params; 
   try {
     const turns = await prisma.turn.findMany({
-      where: { userDni: parseInt(dni) }, // Filtra los turnos por el DNI del usuario
+      where: { userDni: parseInt(dni) },
     });
 
     if (turns.length === 0) {
@@ -384,9 +383,8 @@ app.get('/users/:dni/turns', async (req, res) => {
   }
 });
 
-//eliminar un turnno en base a su ID
 app.delete('/turns/:id', async (req, res) => {
-  const { id } = req.params; // Obtén el ID del turno desde los parámetros
+  const { id } = req.params;
 
   try {
     const deletedTurn = await prisma.turn.delete({
@@ -398,7 +396,6 @@ app.delete('/turns/:id', async (req, res) => {
     console.error(error);
 
     if (error.code === 'P2025') {
-      // Error específico de Prisma cuando no encuentra el registro
       return res.status(404).json({ error: 'Turno no encontrado' });
     }
 

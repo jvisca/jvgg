@@ -1,5 +1,5 @@
 #background1 {
-    background-image: url('../IMG/Trainers_fondo.jpg'); /* Cambia 'ruta/a/tu/imagen.jpg' por la ruta real de tu imagen */
+    background-image: url('../IMG/Trainers_fondo.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
@@ -8,7 +8,7 @@
 }
 
 #background2 {
-    background-image: url('../IMG/cr7_cambio.jpeg'); /* Cambia 'ruta/a/tu/imagen.jpg' por la ruta real de tu imagen */
+    background-image: url('../IMG/cr7_cambio.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
