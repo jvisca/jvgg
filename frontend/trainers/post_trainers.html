@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trainers </title>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link 
+        rel="stylesheet"  
+        href="../Forms.css">
+        <link 
+        rel="stylesheet"  
+        href="./Trainers_background.css">
+</head>
+
+<body>
+    <section id="background1" class="section is-medium pt-5">
+        <div class="container is-fluid">
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <form class="box" >
+                        <h1 class="title is-1 has-text-centered highlight">BE PART OF US</h1>
+                        <div class="field">
+                            <label class="label highlight">DNI</label>
+                            <div class="control has-icons-left">
+                                <input id="tr_dni" class="input custom-width" type="text" placeholder="Your DNI"/>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-address-card"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Name</label>
+                            <div class="control has-icons-left">
+                                <input id="tr_name" class="input custom-width" type="text" placeholder="Your name"/>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Activity</label>
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="tr_activity">
+                                        <option value="" disabled selected hidden>Choose your activity</option>
+                                        <option value="Bodybuilding">Bodybuilding</option>
+                                        <option value="HIT">HIT</option>
+                                        <option value="Crossfit">Crossfit</option>
+                                        <option value="Yoga">Yoga</option>
+                                        <option value="Pilates">Pilates</option>
+                                        <option value="Zumba">Zumba</option>
+                                        <option value="Boxing">Boxing</option>
+                                        <option value="Spinning">Spinning</option>
+                                        <option value="Swimming">Swimming</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-running"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Time slot</label>
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="tr_slot">
+                                        <option value="" disabled selected hidden>Choose your slot</option>
+                                        <option value="Morning">Morning</option>
+                                        <option value="Afternoon">Afternoon</option>
+                                        <option value="Night">Night</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Age</label>
+                            <div class="control has-icons-left">
+                                <input id="tr_age" class="input custom-width" type="text" placeholder="Your age"/>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Gender</label>
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="tr_gender">
+                                        <option value="" disabled selected hidden>Choose your gender</option>
+                                        <option value="other">Other</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-transgender-alt" id="gender-icon"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-grouped is-grouped-centered">
+                            <p class="control">
+                                <button class="button is-white button-custome" onclick="submitForm(event)">Submit</button>
+                            </p>
+                            <p class="control">
+                                <a class="button is-white button-custome" onclick="clearForm()">Clear</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>  
+        </div>
+    </section>
+
+    <script src="./Tr_script.js">
+    </script>
+</body>
+</html>

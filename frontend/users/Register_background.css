@@ -1,0 +1,8 @@
+body {
+    background-image: url('../IMG/fondo_users.png'); /* Cambia 'ruta/a/tu/imagen.jpg' por la ruta real de tu imagen */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    margin: 0;
+  }

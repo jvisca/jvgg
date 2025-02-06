@@ -24,8 +24,8 @@ model Turn {
   trainerDni   Int
   timeSlot     String
   timesPerWeek Int
-  user         Users   @relation(fields: [userDni], references: [dni]) 
   trainer      Trainer @relation(fields: [trainerDni], references: [dni])
+  user         Users   @relation(fields: [userDni], references: [dni])
 }
 
 model Trainer {

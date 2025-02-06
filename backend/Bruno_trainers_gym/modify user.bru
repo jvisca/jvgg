@@ -1,0 +1,25 @@
+meta {
+  name: modify user
+  type: http
+  seq: 16
+}
+
+put {
+  url: http://localhost:3000/user/:dni
+  body: json
+  auth: none
+}
+
+params:path {
+  dni: 98765
+}
+
+body:json {
+  {
+    "name": "ludmila",
+    "activity": "Musculacion",
+    "timeSlot": "Noche",
+    "age": 19,
+    "gender": "fem"
+  }
+}

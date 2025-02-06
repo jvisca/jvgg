@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATE SEASSION</title>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link 
+        rel="stylesheet"  
+        href="../Forms.css">
+        <link 
+        rel="stylesheet"  
+        href="./Turns_background.css">
+</head>
+
+<body>
+    <section class="section is-medium pt-5">
+        <div class="container is-fluid">
+            <div class="columns is-centered">
+                <div class="column is-one-third">
+                    <form class="box">
+                        <h1 class="title is-1 has-text-centered highlight">TAKE A TURN</h1>
+                        <div class="field">
+                            <label class="label highlight">DNI</label>
+                            <div class="control has-icons-left">
+                                <input id="tu_dni" class="input custom-width" type="text" placeholder="Your DNI"/>
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-address-card"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Activity</label>
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="tu_activity">
+                                        <option value="" disabled selected hidden>Choose your activity</option>
+                                        <option value="Bodybuilding">Bodybuilding</option>
+                                        <option value="HIT">HIT</option>
+                                        <option value="Crossfit">Crossfit</option>
+                                        <option value="Yoga">Yoga</option>
+                                        <option value="Pilates">Pilates</option>
+                                        <option value="Zumba">Zumba</option>
+                                        <option value="Boxing">Boxing</option>
+                                        <option value="Spinning">Spinning</option>
+                                        <option value="Swimming">Swimming</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-running"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Time slot</label>
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="tu_slot">
+                                        <option value="" disabled selected hidden>Choose your slot</option>
+                                        <option value="Morning">Morning</option>
+                                        <option value="Afternoon">Afternoon</option>
+                                        <option value="Night">Night</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Times per week</label>
+                            <div class="control has-icons-left">
+                                <div class="select">
+                                    <select id="tu_times">
+                                        <option value="" disabled selected hidden>How many times per week</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                    </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label highlight">Trainer</label>
+                            <div class="field has-addons">
+                                <div class="control has-icons-left is-expanded">
+                                    <input id="tu_trainer" class="input custom-width" type="text" placeholder="Your trainer" readonly/>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-stopwatch-20"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field is-grouped is-grouped-centered">
+                            <p class="control">
+                                <button type="submit" class="button is-white button-custome" onclick="submitForm(event)">Submit</button>
+                            </p>
+                            <p class="control">
+                                <a class="button is-white button-custome" onclick="clearForm()">Clear</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="./Tu_script.js"></script>
+</body>
+</html>

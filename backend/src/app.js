@@ -3,22 +3,20 @@ const { body, validationResult, param} = require('express-validator');
 
 const express = require('express')
 const app = express()
+var cors = require('cors')
 const port = 3000
 const prisma = new PrismaClient()
 
 app.use(express.json())
-
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.get('/api/v1/')
-
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
-
 
 app.post('/register', async (req, res) => {
   const { dni, name, email, gender, age, cellphone } = req.body;
@@ -207,24 +205,32 @@ app.delete("/api/v1/trainer/:dni",[param('dni').notEmpty()], async (req, res) =>
     if (!errors.isEmpty()) {
       return res.sendStatus(400)
     }
+    
     const trainer = await prisma.trainer.findUnique({
       where: {
         dni: parseInt(req.params.dni)
       }
-    })
+    });
 
     if (trainer === null){
       res.sendStatus(404)
       return
     }
 
+    await prisma.turn.deleteMany({
+      where: { trainerDni:parseInt(req.params.dni) }
+    });
+
     await prisma.trainer.delete({
       where:{
         dni: parseInt(req.params.dni)
       }
-    })
+    });
 
     res.send(trainer)
+
+
+
   }
   catch (error) {
     res.status(500).send({ error: "Internal Server Error" })
@@ -248,6 +254,20 @@ app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notE
       return
     }
 
+    const turno = await prisma.turn.findMany({
+      where: {
+        trainerDni: parseInt(req.params.dni)
+      }
+    })
+
+    if (turno.length > 0){
+      await prisma.turn.deleteMany({
+        where: {
+          trainerDni: parseInt(req.params.dni)
+        }
+      })
+    }
+
     trainer = await prisma.trainer.update({
       where: {
         dni: trainer.dni
@@ -269,7 +289,7 @@ app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notE
 
 //-----------------------------------------------------------------------------------
 
-app.post("/api/v1/turns", [body('userDni').isLength({min:7}).isNumeric().notEmpty(), body('activity').notEmpty(),body('trainerDni').notEmpty(), body('timeSlot').notEmpty(), body('timesPerWeek').notEmpty().isNumeric()], async (req, res) => {
+app.post("/api/v1/turn", [body('userDni').isLength({min:7}).isNumeric().notEmpty(), body('activity').notEmpty(),body('trainerDni').notEmpty(), body('timeSlot').notEmpty(), body('timesPerWeek').notEmpty().isNumeric()], async (req, res) => {
   try{
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
@@ -345,7 +365,7 @@ app.get('/users/:dni/turns', async (req, res) => {
   const { dni } = req.params; // Obtén el DNI del usuario desde los parámetros
   try {
     const turns = await prisma.turn.findMany({
-      where: { dni: parseInt(dni) }, // Filtra los turnos por el DNI del usuario
+      where: { userDni: parseInt(dni) }, // Filtra los turnos por el DNI del usuario
     });
 
     if (turns.length === 0) {
@@ -358,7 +378,6 @@ app.get('/users/:dni/turns', async (req, res) => {
     res.status(500).json({ error: 'Error al obtener los turnos del usuario' });
   }
 });
-
 
 //eliminar un turnno en base a su ID
 app.delete('/turns/:id', async (req, res) => {
