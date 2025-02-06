@@ -60,6 +60,11 @@ showTrainers = function(){
 }
 
 deleteTrainers = function(dni){
+    
+    if (!confirm(`Are you sure you want to delete the trainer with DNI ${dni}?`)) {
+        return; // Si el usuario cancela, no hace nada
+    }
+
     alert('trainer deleted'+dni);
     fetch(`http://localhost:3000/api/v1/trainer/${dni}`, { method: 'DELETE' })
     .then(response => response.json())

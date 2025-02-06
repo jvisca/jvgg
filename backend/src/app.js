@@ -205,24 +205,32 @@ app.delete("/api/v1/trainer/:dni",[param('dni').notEmpty()], async (req, res) =>
     if (!errors.isEmpty()) {
       return res.sendStatus(400)
     }
+    
     const trainer = await prisma.trainer.findUnique({
       where: {
         dni: parseInt(req.params.dni)
       }
-    })
+    });
 
     if (trainer === null){
       res.sendStatus(404)
       return
     }
 
+    await prisma.turn.deleteMany({
+      where: { trainerDni:parseInt(req.params.dni) }
+    });
+
     await prisma.trainer.delete({
       where:{
         dni: parseInt(req.params.dni)
       }
-    })
+    });
 
     res.send(trainer)
+
+
+
   }
   catch (error) {
     res.status(500).send({ error: "Internal Server Error" })
