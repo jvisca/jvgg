@@ -109,11 +109,18 @@ app.put('/user/:dni', async (req, res) => {
 app.delete('/user/:dni', async (req, res) => {
   const { dni } = req.params;
   try {
+
+    await prisma.turn.deleteMany({
+      where: { userDni: parseInt(dni) }
+    });
+
     await prisma.users.delete({
       where: { dni: parseInt(dni) },
     });
+
     res.status(200).json({ message: 'User successfully deleted.' });
-  } catch (error) {
+  } 
+  catch (error) {
     if (error.code === 'P2025') {
       res.status(404).json({ error: 'User not found.' });
     } else {
@@ -129,6 +136,7 @@ app.get("/api/v1/trainers", async (req, res) => {
     const trainers = await prisma.trainer.findMany()
     if (trainers.length === 0){
       res.sendStatus(204)
+      
       return
     }
 
@@ -228,9 +236,6 @@ app.delete("/api/v1/trainer/:dni",[param('dni').notEmpty()], async (req, res) =>
     });
 
     res.send(trainer)
-
-
-
   }
   catch (error) {
     res.status(500).send({ error: "Internal Server Error" })
@@ -242,16 +247,6 @@ app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notE
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
       return res.sendStatus(400)
-    }
-
-    let trainer = await prisma.trainer.findUnique({
-      where: {
-        dni: parseInt(req.params.dni)
-      }
-    })
-    if (trainer === null){
-      res.sendStatus(404)
-      return
     }
 
     const turno = await prisma.turn.findMany({
@@ -266,6 +261,16 @@ app.put("/api/v1/trainer/:dni", [param('dni').isLength({min:7}).isNumeric().notE
           trainerDni: parseInt(req.params.dni)
         }
       })
+    }
+
+    let trainer = await prisma.trainer.findUnique({
+      where: {
+        dni: parseInt(req.params.dni)
+      }
+    })
+    if (trainer === null){
+      res.sendStatus(404)
+      return
     }
 
     trainer = await prisma.trainer.update({

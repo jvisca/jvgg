@@ -36,6 +36,8 @@ function submitForm(event){
         if (response.status === 201) {
             alert('User created successfully');
             clearForm();
+            console.log(body);
+
         } else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error creating the user');
@@ -57,52 +59,12 @@ function clearForm(){
     document.getElementById('re_gender').value = '';
 }
 
-function putTurn(event){
-    event.preventDefault();
-
-    let id = document.getElementById('tu_id').value;
-    let userDni = document.getElementById('tu_dni').value;
-    let activity = document.getElementById('tu_activity').value;
-    let trainerDni = document.getElementById('tu_trainer').value;
-    let timeSlot = document.getElementById('tu_slot').value;
-    let timesPerWeek = document.getElementById('tu_times').value;
-
-    let body = {
-        id: parseInt(id),
-        userDni: parseInt(userDni),
-        activity: activity,
-        trainerDni: parseInt(trainerDni),
-        timeSlot: timeSlot,
-        timesPerWeek: parseInt(timesPerWeek)
-    };
-
-    fetch(`http://localhost:3000/api/v1/turn/${id}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(body)
-    })
-    .then(response => {
-        if (response.status === 200) {
-            alert('Turn updated successfully');
-            clearForm();
-        } else {
-            return response.json().then(data => {
-                throw new Error(data.error || 'Error updating the turn');
-            });
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error updating the turn: ' + error.message);
-    });
-}
-
 function putUser(event){
     event.preventDefault();
 
-    let dni = document.getElementById('re_dni').value;
+    const urlParams = new URLSearchParams(window.location.search);
+    const dni = parseInt(urlParams.get('dni'));
+
     let name = document.getElementById('re_name').value;
     let email = document.getElementById('re_email').value;
     let age = document.getElementById('re_age').value;
@@ -110,7 +72,6 @@ function putUser(event){
     let gender = document.getElementById('re_gender').value;
 
     let body = {
-        dni: parseInt(dni),
         name: name,
         email: email,
         age: parseInt(age),
@@ -118,7 +79,7 @@ function putUser(event){
         gender: gender
     };
 
-    fetch(`http://localhost:3000/api/v1/user/${dni}`, {
+    fetch(`http://localhost:3000/user/${dni}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -128,15 +89,33 @@ function putUser(event){
     .then(response => {
         if (response.status === 200) {
             alert('User updated successfully');
-            clearForm();
+            clearFormPut();
+            console.log(body);
         } else {
             return response.json().then(data => {
-                throw new Error(data.error || 'Error updating the user');
+                throw new Error(data.error || 'Error updating the User');
             });
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Error updating the user: ' + error.message);
+        alert('Error updating the User: ' + error.message);
     });
 }
+
+function clearFormPut(){
+    document.getElementById('re_name').value = '';
+    document.getElementById('re_email').value = '';
+    document.getElementById('re_age').value = '';
+    document.getElementById('re_cellphone').value = '';
+    document.getElementById('re_gender').value = '';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const dni = urlParams.get('dni');
+
+    if (dni) {
+        document.getElementById('user-dni').textContent = `USER DNI: ${dni}`;
+    }
+});

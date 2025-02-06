@@ -25,7 +25,7 @@
                 <div class="column is-one-third">
                     <form class="box">
                         <h1 class="title is-1 has-text-centered highlight">CHANGE YOUR DATA</h1>
-                        <h3 class="title is-3 has-text-centered highlight">USER DNI:</h3>
+                        <h3 class="title is-3 has-text-centered highlight" id="user-dni"></h3>
                         <div class="field">
                             <label class="label highlight">Name</label>
                             <div class="control has-icons-left">
@@ -80,10 +80,10 @@
                         </div>
                         <div class="field is-grouped is-grouped-centered">
                             <p class="control">
-                                <button type="submit" class="button is-white button-custome" onclick="submitForm(event)">Submit</button>
+                                <button type="submit" class="button is-white button-custome" onclick="putUser(event)">Edit</button>
                             </p>
                             <p class="control">
-                                <a class="button is-white button-custome" onclick="clearForm()">Clear</a>
+                                <a class="button is-white button-custome" onclick="clearFormPut()">Clear</a>
                             </p>
                         </div>
                     </form>
