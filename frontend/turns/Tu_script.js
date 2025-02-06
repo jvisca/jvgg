@@ -34,6 +34,7 @@ function submitForm(event) {
         if (response.status === 201) {
             alert('Turn created successfully');
             clearForm();
+            console.log(body);
         } else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error creating the turn');
@@ -85,7 +86,7 @@ function putTurn(event){
         if (response.status === 200) {
             alert('Turn updated successfully');
             clearForm();
-            console.log(body);
+            console.log(body); // Depuración
 
         } else {
             return response.json().then(data => {

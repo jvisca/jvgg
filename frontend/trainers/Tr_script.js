@@ -36,6 +36,7 @@ function submitForm(event){
         if (response.status === 201) {
             alert('Trainer created successfully');
             clearForm();
+            console.log(body);
         } else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error creating the trainer');
@@ -60,16 +61,21 @@ function clearForm(){
 function putTrainer(event){
     event.preventDefault();
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const dni = parseInt(urlParams.get('dni'));
+
     let name = document.getElementById('tr_name').value;
     let activity = document.getElementById('tr_activity').value;
     let slot = document.getElementById('tr_slot').value;
     let age = document.getElementById('tr_age').value;
+    let gender = document.getElementById('tr_gender').value;
 
     let body = {
         name: name,
         activity: activity,
         timeSlot: slot,
-        age: parseInt(age)
+        age: parseInt(age),
+        gender: gender
     };
 
     fetch(`http://localhost:3000/api/v1/trainer/${dni}`, {
@@ -82,7 +88,8 @@ function putTrainer(event){
     .then(response => {
         if (response.status === 200) {
             alert('Trainer updated successfully');
-            clearForm();
+            clearFormPut();
+            console.log(body);
         } else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error updating the trainer');
@@ -95,11 +102,19 @@ function putTrainer(event){
     });
 }
 
+function clearFormPut(){
+    document.getElementById('tr_name').value = '';
+    document.getElementById('tr_activity').value = '';
+    document.getElementById('tr_slot').value = '';
+    document.getElementById('tr_age').value = '';
+    document.getElementById('tr_gender').value = '';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const dni = urlParams.get('dni');
 
     if (dni) {
         document.getElementById('trainer-dni').textContent = `DNI: ${dni}`;
-        document.getElementById('tr_dni').value = dni;}
+    }
 });

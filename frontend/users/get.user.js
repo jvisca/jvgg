@@ -57,18 +57,10 @@ showusers = function() {
 
 deleteUser = function(dni) {
     alert('user deleted ' + dni);
-    fetch(`http://localhost:3000/user/${dni}`, { method: 'DELETE' })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
+    fetch('http://localhost:3000/user/' + dni, { method: 'DELETE' })
+    .then(response => response.json())
     .then(response => {
         console.log(response);
         showusers();
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
     });
 }
