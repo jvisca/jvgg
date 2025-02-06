@@ -3,7 +3,7 @@ window.onload = function(){
 }
 
 showTurns = function(){
-    fetch('http://localhost:3000/turns') // Endpoint correcto
+    fetch('http://localhost:3000/turns')
     .then(response => response.json())
     .then(data  => {
         console.log(data);
@@ -11,7 +11,7 @@ showTurns = function(){
         let table = document.getElementById('sbody');
         table.innerHTML = '';
 
-        data.forEach(turn => { // Cambié "user" por "turn"
+        data.forEach(turn => {
             let tr = document.createElement('tr');
 
             let ID = document.createElement('td');
@@ -36,14 +36,14 @@ showTurns = function(){
             let button = document.createElement('button');
             button.textContent = 'delete';
             button.className = "button is-danger is-dark";
-            button.onclick = function() { deleteTurn(turn.id); }; // Cambio de "deleteUser" a "deleteTurn"
+            button.onclick = function() { deleteTurn(turn.id); };
 
             let actualizar = document.createElement('td');
             let updateButton = document.createElement('button');
-            updateButton.textContent = 'Update';
+            updateButton.textContent = 'Edit';
             updateButton.className = "button is-warning is-dark";
-            updateButton.onclick = function() { 
-                window.location.href = `actualizar.html?id=${trainer.dni}`; 
+            updateButton.onclick = function () { 
+            window.location.href = `put_turn.html?id=${turn.id}`; 
             };
 
             borrar.appendChild(button);
@@ -57,7 +57,6 @@ showTurns = function(){
             tr.appendChild(timesperweek);
             tr.appendChild(borrar);
             tr.appendChild(actualizar);
-
             table.appendChild(tr);
         }); 
     }); 
@@ -69,6 +68,6 @@ deleteTurn = function(id){
     .then(response => response.json())
     .then(response => {
         console.log(response);
-        showTurns(); // Recargar la lista después de eliminar
+        showTurns();
     });
 }

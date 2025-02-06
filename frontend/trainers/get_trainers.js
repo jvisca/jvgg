@@ -2,8 +2,6 @@ window.onload = function(){
     showTrainers();
 }
 
-
-
 showTrainers = function(){
     fetch('http://localhost:3000/api/v1/trainers')
     .then(response => {
@@ -35,15 +33,15 @@ showTrainers = function(){
         button.className="button is-danger is-dark";
         button.onclick=function() { deleteTrainers(trainer.dni);};
 
-        //boton de actualizar xd
+        
         let actualizar = document.createElement('td');
         let updateButton = document.createElement('button');
-        updateButton.textContent = 'Update';
+        updateButton.textContent = 'Edit';
         updateButton.className = "button is-warning is-dark";
-        updateButton.onclick = function() { 
-            window.location.href = `actualizar.html?id=${trainer.dni}`; 
+        updateButton.onclick = function () { 
+            window.location.href = `put_trainers.html?dni=${trainer.dni}`; 
         };
-        //
+        
         borrar.appendChild(button);
         actualizar.appendChild(updateButton);
 

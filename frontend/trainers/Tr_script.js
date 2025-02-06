@@ -60,14 +60,12 @@ function clearForm(){
 function putTrainer(event){
     event.preventDefault();
 
-    let dni = document.getElementById('tr_dni').value;
     let name = document.getElementById('tr_name').value;
     let activity = document.getElementById('tr_activity').value;
     let slot = document.getElementById('tr_slot').value;
     let age = document.getElementById('tr_age').value;
 
     let body = {
-        dni: parseInt(dni),
         name: name,
         activity: activity,
         timeSlot: slot,
@@ -96,3 +94,12 @@ function putTrainer(event){
         alert('Error updating the trainer: ' + error.message);
     });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const dni = urlParams.get('dni');
+
+    if (dni) {
+        document.getElementById('trainer-dni').textContent = `DNI: ${dni}`;
+        document.getElementById('tr_dni').value = dni;}
+});
