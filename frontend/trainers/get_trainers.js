@@ -61,18 +61,28 @@ showTrainers = function(){
 
 deleteTrainers = function(dni){
     
-    if (!confirm(`Are you sure you want to delete the trainer with DNI ${dni}?`)) {
-        return; // Si el usuario cancela, no hace nada
+    if (!confirm(`Are you sure you want to delete the trainer with DNI: ${dni}?`)) {
+        return;
     }
 
     alert('trainer deleted'+dni);
-    fetch(`http://localhost:3000/api/v1/trainer/${dni}`, { method: 'DELETE' })
-    .then(response => response.json())
+    
+    fetch(`http://localhost:3000/api/v1/trainer/` + dni, { method: 'DELETE' })
     .then(response => {
-        console.log(response);
-        showTrainers();
+        if (response.status === 200 || response.status === 204) {
+            alert(`Trainer with DNI: ${dni} deleted successfully.`);
+            console.log(response);
+            showTrainers();
+        } else if (response.status === 404) {
+            alert(`Trainer with DNI ${dni} not found.`);
+        } else if (response.status === 500) {
+            alert('There was an error on the server. Please try again later.');
+        } else {
+            alert('An unexpected error occurred.');
+        }
     })
     .catch(error => {
         console.error('Error deleting trainer:', error);
+        alert('Error deleting the trainer: ' + error.message);
     });
 }

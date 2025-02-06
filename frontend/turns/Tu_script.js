@@ -9,11 +9,21 @@ fetch('http://localhost:3000/turns')
 function submitForm(event) {
     event.preventDefault();
 
-    let userDni = document.getElementById('tu_dni').value;
-    let activity = document.getElementById('tu_activity').value;
-    let trainerDni = document.getElementById('tu_trainer').value;
-    let timeSlot = document.getElementById('tu_slot').value;
-    let timesPerWeek = document.getElementById('tu_times').value;
+    let userDni = document.getElementById('tu_dni').value.trim();
+    let activity = document.getElementById('tu_activity').value.trim();
+    let trainerDni = document.getElementById('tu_trainer').value.trim();
+    let timeSlot = document.getElementById('tu_slot').value.trim();
+    let timesPerWeek = document.getElementById('tu_times').value.trim();
+
+    if (!userDni || !activity || !trainerDni || !timeSlot || !timesPerWeek) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    if (isNaN(userDni) || isNaN(trainerDni)){
+        alert('El DNI del usuario y el DNI del entrenador deben ser números.');
+        return;
+    }
 
     let body = {
         userDni: parseInt(userDni),
@@ -35,7 +45,19 @@ function submitForm(event) {
             alert('Turn created successfully');
             clearForm();
             console.log(body);
-        } else {
+        }
+        else if (response.status === 400) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Datos inválidos.');
+            });
+        } 
+        else if (response.status === 409) {
+            throw new Error('Ya existe un DNI asociado a este turno.');
+        } 
+        else if (response.status === 500) {
+            throw new Error('Error del servidor, intenta más tarde.');
+        }
+        else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error creating the turn');
             });
@@ -61,11 +83,21 @@ function putTurn(event){
     const urlParams = new URLSearchParams(window.location.search);
     const id = parseInt(urlParams.get('id'));
 
-    let userDni = document.getElementById('tu_dni').value;
-    let activity = document.getElementById('tu_activity').value;
-    let trainerDni = document.getElementById('tu_trainer').value;
-    let timeSlot = document.getElementById('tu_slot').value;
-    let timesPerWeek = document.getElementById('tu_times').value;
+    let userDni = document.getElementById('tu_dni').value.trim();
+    let activity = document.getElementById('tu_activity').value.trim();
+    let trainerDni = document.getElementById('tu_trainer').value.trim();
+    let timeSlot = document.getElementById('tu_slot').value.trim();
+    let timesPerWeek = document.getElementById('tu_times').value.trim();
+
+    if (!userDni || !activity || !trainerDni || !timeSlot || !timesPerWeek) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    if (isNaN(userDni) || isNaN(trainerDni)) {
+        alert('El DNI del usuario y el DNI del entrenador deben ser números.');
+        return;
+    }
 
     let body = {
         userDni: parseInt(userDni),
@@ -86,9 +118,18 @@ function putTurn(event){
         if (response.status === 200) {
             alert('Turn updated successfully');
             clearForm();
-            console.log(body); // Depuración
+            console.log(body);
 
-        } else {
+        } 
+        else if (response.status === 400) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Datos inválidos.');
+            });
+        } 
+        else if (response.status === 500) {
+            throw new Error('Error del servidor, intenta más tarde.');
+        }
+        else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error updating the turn');
             });

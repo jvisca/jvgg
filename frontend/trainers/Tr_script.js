@@ -6,21 +6,32 @@ fetch('http://localhost:3000/api/v1/trainers')
     console.log(data);
 });
 
+
 function submitForm(event){
     event.preventDefault();
 
-    let dni = document.getElementById('tr_dni').value;
-    let name = document.getElementById('tr_name').value;
-    let activity = document.getElementById('tr_activity').value;
-    let slot = document.getElementById('tr_slot').value;
-    let age = document.getElementById('tr_age').value;
-    let gender = document.getElementById('tr_gender').value;
+    let dni = document.getElementById('tr_dni').value.trim();
+    let name = document.getElementById('tr_name').value.trim();
+    let activity = document.getElementById('tr_activity').value.trim();
+    let timeSlot = document.getElementById('tr_slot').value.trim();
+    let age = document.getElementById('tr_age').value.trim();
+    let gender = document.getElementById('tr_gender').value.trim();
+
+    if (!dni || !name || !activity || !timeSlot || !age || !gender) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    if (isNaN(dni) || isNaN(age)) {
+        alert('El DNI y la edad deben ser números.');
+        return;
+    }
 
     let body = {
         dni: parseInt(dni),
         name: name,
         activity: activity,
-        timeSlot: slot,
+        timeSlot: timeSlot,
         age: parseInt(age),
         gender: gender 
     }
@@ -37,7 +48,19 @@ function submitForm(event){
             alert('Trainer created successfully');
             clearForm();
             console.log(body);
-        } else {
+        } 
+        else if (response.status === 400) {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Datos inválidos.');
+            });
+        } 
+        else if (response.status === 409) {
+            throw new Error('Ya existe un entrenador con este DNI.');
+        } 
+        else if (response.status === 500) {
+            throw new Error('Error del servidor, intenta más tarde.');
+        }
+        else {
             return response.json().then(data => {
                 throw new Error(data.error || 'Error creating the trainer');
             });
@@ -64,11 +87,21 @@ function putTrainer(event){
     const urlParams = new URLSearchParams(window.location.search);
     const dni = parseInt(urlParams.get('dni'));
 
-    let name = document.getElementById('tr_name').value;
-    let activity = document.getElementById('tr_activity').value;
-    let slot = document.getElementById('tr_slot').value;
-    let age = document.getElementById('tr_age').value;
-    let gender = document.getElementById('tr_gender').value;
+    let name = document.getElementById('tr_name').value.trim();
+    let activity = document.getElementById('tr_activity').value.trim();
+    let slot = document.getElementById('tr_slot').value.trim();
+    let age = document.getElementById('tr_age').value.trim();
+    let gender = document.getElementById('tr_gender').value.trim();
+
+    if (!name || !activity || !slot || !age || !gender) {
+        alert('Todos los campos son obligatorios.');
+        return;
+    }
+
+    if (isNaN(dni) || isNaN(age)) {
+        alert('El DNI y la edad deben ser números.');
+        return;
+    }
 
     let body = {
         name: name,
@@ -85,14 +118,24 @@ function putTrainer(event){
         },
         body: JSON.stringify(body)
     })
+
     .then(response => {
         if (response.status === 200) {
             alert('Trainer updated successfully');
             clearFormPut();
             console.log(body);
-        } else {
+        } 
+        else if (response.status === 400) {
             return response.json().then(data => {
-                throw new Error(data.error || 'Error updating the trainer');
+                throw new Error(data.error || 'Datos inválidos.');
+            });
+        } 
+        else if (response.status === 500) {
+            throw new Error('Error del servidor, intenta más tarde.');
+        }
+        else {
+            return response.json().then(data => {
+                throw new Error(data.error || 'Error creating the trainer');
             });
         }
     })
@@ -100,7 +143,6 @@ function putTrainer(event){
         console.error('Error:', error);
         alert('Error updating the trainer: ' + error.message);
     });
-}
 
 function clearFormPut(){
     document.getElementById('tr_name').value = '';
@@ -117,4 +159,4 @@ document.addEventListener('DOMContentLoaded', function() {
     if (dni) {
         document.getElementById('trainer-dni').textContent = `DNI: ${dni}`;
     }
-});
+})}
