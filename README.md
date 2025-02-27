@@ -1,7 +1,7 @@
 # jvgg
 desarrollo de nuestra api
 
-el  obtejitivo de esta api es mejorar la organizacion de los propietarios de gimnacios logrando mejorar el seguimiento de sus entrendores, atletas y clases que se lleven a cabo.
+el  objetivo de esta api es mejorar la organizacion de los propietarios de gimnacios logrando mejorar el seguimiento de sus entrendores, atletas y clases que se lleven a cabo.
 
 
 ### Requirements:
