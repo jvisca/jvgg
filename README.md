@@ -17,7 +17,7 @@ el  objetivo de esta api es mejorar la organizacion de los propietarios de gimna
     docker compose -d
 
 
-### star 
+### start 
     npm run dev
     docker compose -d
     npm run star
