@@ -37,12 +37,12 @@ podras ingresar informacion mediante formularios*
 ![donde se guardaran de forma de tabla](frontend/IMG/lista.png)
 
 
-donde se guardaran de forma de tabla
+donde se guardaran en forma de tabla
 
 ![teniendo la posibilidad de eliminar y actualiar informacion](frontend/IMG/botones.png)
 
 
 
-teniendo la posibilidad de eliminar y actualiar informacio
+teniendo la posibilidad de eliminar y actualizar informacion
     
 
